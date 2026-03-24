@@ -1,28 +1,39 @@
 import Form from "react-bootstrap/Form"
-import { Button, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Button  } from "react-bootstrap"
 import { InputGroup } from "react-bootstrap"
 import { useState } from "react"
 import * as apidata from '../services/OWMAPI'
 import CurrentWeather from "./CurrentWeather"
 
 
-const SearchCity =()=>{
 
-const [inputdata,setInputdata]=useState("");
+interface searchCityProps
+{
+    onSearch:(location:string)=>void;
+}
 
-const trimminputdata=inputdata.trim();
 
-const handleSearch=(e:React.SubmitEvent)=>
+const SearchCity:React.FC<searchCityProps>=({onSearch})=>{
+
+const [city,setCity]=useState("");
+
+const trimcity=city.trim();
+
+const handleSubmit=(e:React.SubmitEvent)=>
 {
 
     e.preventDefault();
-    <CurrentWeather apidata={apidata.getCurrentWeather}/>
-    
+    //PASS INPUT TO PARENT COMPONENT (APP)
+
+    //CLEAR INPUT 
+  onSearch(trimcity);
+ 
+  setCity("")
 }
 
 return(
         <div id="search-wrapper">
-            <Form id="search-form" onSubmit={handleSearch}>
+            <Form id="search-form" onSubmit={handleSubmit}>
             <InputGroup className="mb-3">
                 <Form.Control  
                 
@@ -30,19 +41,20 @@ return(
                 placeholder="Enter the city to search for "
                 aria-label="City"
                 aria-details="Search for city to show current weather for."
-                value={inputdata}
-                onChange={e=>setInputdata(e.target.value)}
+                value={city}
+                onChange={e=>setCity(e.target.value)}
+                minLength={3}
                 required
                                
                 />
                 <Button
                 
-                disabled={trimminputdata.length<3}
+                disabled={trimcity.length<3}
                 
                 variant="danger" type="submit"
                  > 🔎</Button>
                    </InputGroup>
-                 {trimminputdata.length >0 && trimminputdata.length<3 && (
+                 {trimcity.length >0 && trimcity.length<3 && (
                     <Form.Text className="text-danger text-small" > Too short to find city </Form.Text>
                  )}
 

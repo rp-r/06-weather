@@ -2,23 +2,22 @@
 import Card from "react-bootstrap/Card"
 import  imgBanner  from "../src/assets/banner.jpg"
 
-import * as apidata from '../services/OWMAPI'
 
 
 
 
 
-const CurrentWeather=({apid})=>
+const CurrentWeather=()=>
 {
 
     return(<>
     <div id="current-weather">
-        <Card apid={apid}>
+        <Card>
         <img src= {imgBanner}  className="card-img-top" alt =" Daytime, nighttime, daytime ,nighttime"/>
 
         <div className="card-body">
         <h5 className="card-title" id="location">
-        <span id="city">{apid}</span>,<span id="country">Country</span>
+        <span id="city">City</span>,<span id="country">Country</span>
 
         </h5>
         <p className="temp">
