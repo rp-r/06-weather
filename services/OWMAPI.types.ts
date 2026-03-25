@@ -16,7 +16,7 @@ interface WeatherCondition
     icon:string;
 }
 
-export interface CurrentWeather {
+export interface OWM_CurrentWeather {
   coord: {
     lon: number;
     lat: number;
