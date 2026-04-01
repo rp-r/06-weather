@@ -8,7 +8,7 @@
  * 
  */
 
-interface WeatherCondition
+ export interface WeatherCondition
 {
     id:number;
     main:string;

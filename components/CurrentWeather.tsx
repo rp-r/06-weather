@@ -1,8 +1,10 @@
 
 import Card from "react-bootstrap/Card"
-import  imgBanner  from "../src/assets/banner.jpg"
+import  imgBanner  from "../src/assets/images/banner.png"
 import type { OWM_CurrentWeather } from "../services/OWMAPI.types"
 import type React from "react";
+import WeatherCondi from "../components/WeatherCond";
+
 
 interface CurrentWeatherProps
 {
@@ -14,6 +16,12 @@ interface CurrentWeatherProps
 
 const CurrentWeather: React.FC<CurrentWeatherProps>=({data})=>
 {
+
+    const freshness=new Date(data.dt*1000);
+
+
+
+
 
     return(<>
     <div id="current-weather">
@@ -35,7 +43,27 @@ const CurrentWeather: React.FC<CurrentWeatherProps>=({data})=>
            <p className="wind">
         <span id="windspeed">{data.wind.speed} </span> % m/s
         </p>
+
+         <ul className="conditions">
+        { data.weather.map(condition=>(
+            <WeatherCondi  key ={data.id} data={condition}/>
         
+        
+        
+        ))}
+
+        
+            
+         
+
+
+        </ul>
+        <p className="text-mutes small">
+            <span>
+                {freshness.toLocaleDateString()}
+                {freshness.toLocaleTimeString()}
+            </span>
+        </p>
         
         
         </div>

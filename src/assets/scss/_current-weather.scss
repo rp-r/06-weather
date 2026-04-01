@@ -44,6 +44,11 @@
         li {
 
             flex:0;
+            .condition-description
+            {
+                color:$text-muted;
+                font-size: small;
+            }
         };
     }
 }
